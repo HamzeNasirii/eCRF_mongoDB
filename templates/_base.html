@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html dir="rtl" lang="fa">
+<head>
+    <!-- Required meta tags -->
+    {#    <meta charset="utf-8">#}
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title> {% block page_title %} {% endblock %} </title>
+</head>
+
+
+<body>
+{% if user.is_authenticated %}
+    <span>خوش آمدید {{ user.username }}</span>
+{% else %}
+    <a href="#">Login</a> <span>|</span> <a href="#">Sign up</a>
+{% endif %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">فرم گزارش مورد</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">خانه</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'register' %}">ثبتنام بیمار</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'patientsListView' %}">لیست بیماران</a>
+                <a class="nav-link active" aria-current="page" href="#">گزارشات</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">خروج</a>
+
+                {#                <a class="nav-link" href="{% url 'logout' %}">خروج</a>#}
+            </div>
+        </div>
+        <div class="mx-2 text-white">آقا / خانم {{ user.username }}خوش آمدید</div>
+    </div>
+</nav>
+
+{#<nav class="navbar navbar-expand-custom navbar-mainbg">#}
+{#    <a class="navbar-brand navbar-logo" href="{% url 'home' %}">خانه</a>#}
+{#    <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"#}
+{#            aria-label="Toggle navigation">#}
+{#        <i class="fas fa-bars text-white"></i>#}
+{#    </button>#}
+{#    <div class="collapse navbar-collapse" id="navbarSupportedContent">#}
+{#        <ul class="navbar-nav ml-auto">#}
+{#            <div class="hori-selector">#}
+{#                <div class="left"></div>#}
+{#                <div class="right"></div>#}
+{#            </div>#}
+{#            <li class="nav-item">#}
+{#                <a class="nav-link active" href="{% url 'patientsListView' %}"><i class="fas fa-tachometer-alt">#}
+{#                </i>نمایش لیست بیماران</a>#}
+{#            </li>#}
+{#            <li class="nav-item ">#}
+{#                <a class="nav-link active" href="{% url 'register' %}"><i class="far fa-address-book"></i>ثبتنام#}
+{#                    بیمار جدید</a>#}
+{#            </li>#}
+{#            <li class="nav-item">#}
+{#                <a class="nav-link disabled" href="javascript:void(0);"><i class="far fa-clone"></i>مدیریت کاربران</a>#}
+{#            </li>#}
+{#            <li class="nav-item">#}
+{#                <a class="nav-link disabled" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>گزارش</a>#}
+{#            </li>#}
+{#            <li class="nav-item">#}
+{#                <a class="nav-link active" href="#"><i class="far fa-chart-bar"></i>خروج</a>#}
+{#
+{#            </li>#}
+{#            #}
+{#
+{#            <li class="nav-item">#}
+{# <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>#}
+{#
+{#            </li>#}
+{#            #}
+{#        </ul>#}
+{#    </div>#}
+{#</nav>#}
+
+{% block content %}
+
+{% endblock %}
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

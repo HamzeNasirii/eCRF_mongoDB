@@ -1,0 +1,50 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+لیست بیماران
+{% endblock %}
+
+{% block content %}
+<h5>لیست بیماران</h5>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ردیف</th>
+        <th scope="col">نام</th>
+        <th scope="col">نام خانوادگی</th>
+        <th scope="col">کدملی</th>
+        <th scope="col">جنسیت</th>
+        <th scope="col">نمایش اطلاعات</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for patient in patient_list %}
+    <tr>
+        <th scope="row">{{ patient.id }}</th>
+        <td>{{ patient.d_first_name }}</td>
+        <td>{{ patient.d_last_name }}</td>
+        <td>{{ patient.d_national_code }}</td>
+        <td>{{ patient.d_gender }}</td>
+        <td>
+<!--                        {# <a href="{% url 'patient_detail' patient.id %}">#}-->
+                        <a href="{{ patient.get_absolute_url }}">
+                            <button type="button" class="btn btn-primary">انتخاب</button>
+                        </a>
+                        <a href="{{ patient.get_absolute_url }}">
+                            <button type="button" class="btn btn-warning">ویرایش</button>
+                        </a>
+                        <a href="{{ patient.get_absolute_url }}delete/">
+                            <button type="button" class="btn btn-danger">حذف</button>
+                        </a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
+<!--    <input type="submit" value="ذخیره">-->
+
+

@@ -1,0 +1,111 @@
+{% extends '_base.html' %}
+
+{% block page_title %}
+جزئیات بیمار
+{% endblock %}
+
+{% block content %}
+<h5>مشخصات بیمار</h5>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">نام</th>
+        <th scope="col">نام خانوادگی</th>
+        <th scope="col">کد ملی</th>
+        <th scope="col">تاریح تولد</th>
+        <th scope="col">جنسیت</th>
+        <th scope="col">مدرک تحصیلی</th>
+        <th scope="col">وضعیت اقتصادی</th>
+        <th scope="col">وضعیت اشتغال</th>
+        <th scope="col">تاریخ ایجاد پرونده</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ demoinfo.d_first_name }}</td>
+        <td>{{ demoinfo.d_last_name }}</td>
+        <td>{{ demoinfo.d_national_code }}</td>
+        <td>{{ demoinfo.d_birthday }}</td>
+        <td>{{ demoinfo.d_gender }}</td>
+        <td>{{ demoinfo.d_educate_rate }}</td>
+        <td>{{ demoinfo.d_economic_situation }}</td>
+        <td>{{ demoinfo.d_status_job }}</td>
+        <td>{{ demoinfo.d_datetime_created }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<h5>اطلاعات سلامت</h5>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">سن</th>
+        <th scope="col">وزن</th>
+        <th scope="col">قد</th>
+        <th scope="col">نمایه توده بدنی</th>
+        <th scope="col">وضعیت بارداری</th>
+        <th scope="col">وضعیت شیردهی</th>
+        <th scope="col">سابقه مصرف دخانیات</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+{#        <td>{{ health.age }}</td>#}
+{#        <td>{{ health.weight }}</td>#}
+{#        <td>{{ health.height }}</td>#}
+{#        <td>{{ health.BMI }}</td>#}
+{#        <td>{{ health.pregnancy_status }}</td>#}
+{#        <td>{{ health.breast_feeding_status }}</td>#}
+{#        <td>{{ health.smoking }}</td>#}
+    </tr>
+    </tbody>
+</table>
+
+<h5>شماره های تماس</h5>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">تلفن منزل</th>
+        <th scope="col">تلفن همراه</th>
+        <th scope="col">فکس</th>
+        <th scope="col">تلفن محل کار</th>
+        <th scope="col">تلفن حامی</th>
+        <th scope="col">تلفن پراکسی</th>
+        <th scope="col">تلفن اضطراری</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+{#        <td>{{ phone.home_phone }}</td>#}
+{#        <td>{{ phone.cell_phone }}</td>#}
+{#        <td>{{ phone.fax }}</td>#}
+{#        <td>{{ phone.work_phone }}</td>#}
+{#        <td>{{ phone.cellular_phone }}</td>#}
+{#        <td>{{ phone.health_care_proxy_phone }}</td>#}
+{#        <td>{{ phone.emergency_phone }}</td>#}
+    </tr>
+    </tbody>
+</table>
+
+<h5>محل سکونت</h5>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">کشور</th>
+        <th scope="col">استان</th>
+        <th scope="col">شهرستان</th>
+        <th scope="col">روستا</th>
+        <th scope="col">کدپستی</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+{#        <td>{{ address.country }}</td>#}
+{#        <td>{{ address.province }}</td>#}
+{#        <td>{{ address.town }}</td>#}
+{#        <td>{{ address.village }}</td>#}
+{#        <td>{{ address.post_code }}</td>#}
+    </tr>
+    </tbody>
+</table>
+{% endblock %}

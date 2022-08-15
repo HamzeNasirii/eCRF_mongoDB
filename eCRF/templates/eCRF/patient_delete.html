@@ -1,0 +1,22 @@
+{% extend '_base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block page_title %}
+Remove Patient History
+{% endblock %}
+
+{% block content %}
+<h3>آیا از حذف بیمار {{ demoinfo.d_first_name }} {{ demoinfo.d_last_name }} با کد ملی {{ demoinfo.d_national_code }}
+    اطمینان دارید؟</h3>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- Using the formset -->
+    {{ form|crispy }}
+
+    <input type="submit" value="بله">
+
+
+</form>
+{% endblock %}
