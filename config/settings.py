@@ -36,13 +36,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # third party apps
     'crispy_forms',
+    'django_countries',
+    'allauth',
+    'allauth.account',
 
+    # local apps
     'accounts',
     'eCRF',
     'patients',
     'pages',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -106,6 +113,27 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# PASSWORD_HASHERS = [
+#      # 'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+#      # 'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+#      # 'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+#      # 'django.contrib.auth.hashers.Argon2PasswordHasher',
+#      # 'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+#      # 'django.contrib.auth.hashers.BCryptPasswordHasher',
+#      # 'django.contrib.auth.hashers.SHA1PasswordHasher',
+#      # 'django.contrib.auth.hashers.MD5PasswordHasher',
+#      # 'django.contrib.auth.hashers.UnsaltedSHA1PasswordHasher',
+#      # 'django.contrib.auth.hashers.UnsaltedMD5PasswordHasher',
+#      # 'django.contrib.auth.hashers.CryptPasswordHasher',
+# ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    # django allauth
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+EMAIL_BACKEND = 'django.core.mail.backend.console.EmailBackend'
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -129,7 +157,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # accounts Config
 LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'login_page'
+LOGOUT_REDIRECT_URL = 'home'
+SIGNUP_REDIRECT_URL = 'home'
 # AUTH_USER_MODEL = 'accounts/CustomUser'
 
+# all auth settings
+# ACCOUNT_SESSION_REMEMBER = True
+
+# crispy forms settings
 CRISPY_TEMPLATE_PACK = 'bootstrap'

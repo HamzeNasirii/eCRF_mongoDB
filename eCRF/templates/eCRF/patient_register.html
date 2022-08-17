@@ -1,5 +1,7 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
+{% load countries %}
+
 {% block page_title %}
     ثبتنام بیمار جدید
 {% endblock %}
@@ -7,10 +9,24 @@
 {% block content %}
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+        {#    نمونه ایجاد کومبوباکس#}
+        {#        <div class="input-group mb-3">#}
+        {#            <select class="form-select" id="d_status_job" name="d_status_job">#}
+        {#                {% for db_vlu in model_job_choices %}#}
+        {#                    <option value="{{ db_vlu }}">{{ db_vlu }}</option>#}
+        {#                {% endfor %}#}
+        {#            </select>#}
+        {#        </div>#}
+
+        {% get_countries as countries %}
+        {#        <select>#}
+        {#            {% for country in countries %}#}
+        {#                <option value="{{ country.code }}">{{ country.name }}</option>#}
+        {#            {% endfor %}#}
+        {#        </select>#}
+
+
         <!-- Using the formset -->
-        {#    {{ form|crispy }}#}
-        {##}
-        {#    <input type="submit" value="ذخیره">#}
         <h5>مشخصات بیمار</h5>
         <table class="table table-striped">
             <thead>
@@ -23,46 +39,74 @@
                 <th scope="col">مدرک تحصیلی</th>
                 <th scope="col">وضعیت اقتصادی</th>
                 <th scope="col">وضعیت اشتغال</th>
-                <th scope="col">تاریخ ایجاد پرونده</th>
+                {#                <th scope="col">تاریخ ایجاد پرونده</th>#}
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td><input type="text" id="first_name" name="d_first_name" value="{{ demoinfo.d_first_name }}"></td>
-                <td><input type="text" id="d_last_name" name="d_last_name" value="{{ demoinfo.d_last_name }}"></td>
+                <td><input type="text" id="first_name" name="d_first_name" value="{{ demo_info_models.d_first_name }}"></td>
+                <td><input type="text" id="d_last_name" name="d_last_name" value="{{ demo_info_models.d_last_name }}"></td>
                 <td><input type="text" id="d_national_code" name="d_national_code"
-                           value="{{ demoinfo.d_national_code }}">
+                           value="{{ demo_info_models.d_national_code }}">
                 </td>
-                <td><input type="date" id="d_birthday" name="d_birthday" value="{{ demoinfo.d_birthday }}"></td>
-                <td>    {{ form.as_p }}
+                <td><input type="date" id="d_birthday" name="d_birthday" value="{{ demo_info_models.d_birthday }}"></td>
+                <td>
+                    <div class="input-group mb-3">
+                        <select class="form-select" id="d_gender" name="d_gender">
+                            {% for db_vlu, human_val in model_gender_choices %}
+                                <option value="{{ db_vlu }}">{{ human_val }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </td>
                 {#                <td><input type="text" id="d_gender" name="d_gender" value="{{ demoinfo.d_gender }}"></td>#}
-                <td><input type="text" id="d_educate_rate" name="d_educate_rate" value="{{ demoinfo.d_educate_rate }}">
+                <td>
+                    <div class="input-group mb-3">
+                        <select class="form-select" id="d_educate_rate" name="d_educate_rate">
+                            {% for db_vlu, human_val in model_ecu_choices %}
+                                <option value="{{ db_vlu }}">{{ human_val }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </td>
-                <td><input type="text" id="d_economic_situation" name="d_economic_situation"
-                           value="{{ demoinfo.d_economic_situation }}"></td>
-                <td><input type="text" id="d_status_job" name="d_status_job" value="{{ demoinfo.d_status_job }}"></td>
-                <td><input type="text" id="d_datetime_created" name="d_datetime_created"
-                           value="{{ demoinfo.d_datetime_created }}"></td>
+                <td>
+                    <div class="input-group mb-3">
+                        <select class="form-select" id="d_economic_situation" name="d_economic_situation">
+                            {% for db_vlu, human_val in model_eco_choices %}
+                                <option value="{{ db_vlu }}">{{ human_val }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group mb-3">
+                        <select class="form-select" id="d_status_job" name="d_status_job">
+                            {% for db_vlu, human_val in model_job_choices %}
+                                <option value="{{ db_vlu }}">{{ human_val }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </td>
+                {#                <td>{{ demoinfo.d_datetime_created }}</td>#}
             </tr>
             </tbody>
         </table>
 
-        <h5>اطلاعات سلامت</h5>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">سن</th>
-                <th scope="col">وزن</th>
-                <th scope="col">قد</th>
-                <th scope="col">نمایه توده بدنی</th>
-                <th scope="col">وضعیت بارداری</th>
-                <th scope="col">وضعیت شیردهی</th>
-                <th scope="col">سابقه مصرف دخانیات</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
+{#        <h5>اطلاعات سلامت</h5>#}
+{#        <table class="table table-striped">#}
+{#            <thead>#}
+{#            <tr>#}
+{#                <th scope="col">سن</th>#}
+{#                <th scope="col">وزن</th>#}
+{#                <th scope="col">قد</th>#}
+{#                <th scope="col">نمایه توده بدنی</th>#}
+{#                <th scope="col">وضعیت بارداری</th>#}
+{#                <th scope="col">وضعیت شیردهی</th>#}
+{#                <th scope="col">سابقه مصرف دخانیات</th>#}
+{#            </tr>#}
+{#            </thead>#}
+{#            <tbody>#}
+{#            <tr>#}
                 {#        <td>{{ health.age }}</td>#}
                 {#        <td>{{ health.weight }}</td>#}
                 {#        <td>{{ health.height }}</td>#}
@@ -70,11 +114,11 @@
                 {#        <td>{{ health.pregnancy_status }}</td>#}
                 {#        <td>{{ health.breast_feeding_status }}</td>#}
                 {#        <td>{{ health.smoking }}</td>#}
-            </tr>
-            </tbody>
-        </table>
+{#            </tr>#}
+{#            </tbody>#}
+{#        </table>#}
 
-        <h5>شماره های تماس</h5>
+        <h5>اطلاعات تماس</h5>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -89,18 +133,21 @@
             </thead>
             <tbody>
             <tr>
-                {#        <td>{{ phone.home_phone }}</td>#}
-                {#        <td>{{ phone.cell_phone }}</td>#}
-                {#        <td>{{ phone.fax }}</td>#}
-                {#        <td>{{ phone.work_phone }}</td>#}
-                {#        <td>{{ phone.cellular_phone }}</td>#}
-                {#        <td>{{ phone.health_care_proxy_phone }}</td>#}
-                {#        <td>{{ phone.emergency_phone }}</td>#}
+                <td><input type="text" id="p_home_phone" name="p_home_phone" value="{{ demo_info_models.p_home_phone }}"></td>
+                <td><input type="text" id="p_cell_phone" name="p_cell_phone" value="{{ demo_info_models.p_cell_phone }}"></td>
+                <td><input type="text" id="p_fax" name="p_fax" value="{{ demo_info_models.p_fax }}"></td>
+                <td><input type="text" id="p_work_phone" name="p_work_phone" value="{{ demo_info_models.p_work_phone }}"></td>
+                <td><input type="text" id="p_cellular_phone" name="p_cellular_phone"
+                           value="{{ demo_info_models.p_cellular_phone }}"></td>
+                <td><input type="text" id="p_health_care_proxy_phone" name="p_health_care_proxy_phone"
+                           value="{{ demo_info_models.p_health_care_proxy_phone }}"></td>
+                <td><input type="text" id="p_emergency_phone" name="p_emergency_phone"
+                           value="{{ demo_info_models.p_emergency_phone }}"></td>
             </tr>
             </tbody>
         </table>
 
-        <h5>محل سکونت</h5>
+        <h5>اطلاعات محل سکونت</h5>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -113,14 +160,23 @@
             </thead>
             <tbody>
             <tr>
-                {#        <td>{{ address.country }}</td>#}
-                {#        <td>{{ address.province }}</td>#}
-                {#        <td>{{ address.town }}</td>#}
-                {#        <td>{{ address.village }}</td>#}
-                {#        <td>{{ address.post_code }}</td>#}
+                <td>
+                    <select>
+                        {% for country in countries %}
+                            <option value="{{ country.code }}">{{ country.name }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td><input type="text" id="a_province" name="a_province" value="{{ demo_info_models.a_province }}"></td>
+                <td><input type="text" id="a_town" name="a_town" value="{{ demo_info_models.a_town }}"></td>
+                <td><input type="text" id="a_village" name="a_village" value="{{ demo_info_models.a_village }}"></td>
+                <td><input type="text" id="a_post_code" name="a_post_code" value="{{ demo_info_models.a_post_code }}"></td>
             </tr>
             </tbody>
         </table>
 
+        <input type="submit" value="ذخیره">
     </form>
+    <a href="{% url 'patientsListView' %}"> <input type="submit" value="برگشت"> </a>
+
 {% endblock %}

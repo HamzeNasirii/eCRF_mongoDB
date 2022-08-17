@@ -15,11 +15,12 @@
 
 
 <body>
-{% if user.is_authenticated %}
-    <span>خوش آمدید {{ user.username }}</span>
-{% else %}
-    <a href="#">Login</a> <span>|</span> <a href="#">Sign up</a>
-{% endif %}
+{#{% if user.is_authenticated %}#}
+{#    <span>خوش آمدید {{ user.username }}</span>#}
+{#{% else %}#}
+{#    <a href="#">Login</a> <span>|</span> <a href="#">Sign up</a>#}
+{#{% endif %}#}
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">فرم گزارش مورد</a>
@@ -33,12 +34,21 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'register' %}">ثبتنام بیمار</a>
                 <a class="nav-link active" aria-current="page" href="{% url 'patientsListView' %}">لیست بیماران</a>
                 <a class="nav-link active" aria-current="page" href="#">گزارشات</a>
-                <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">خروج</a>
-
+                {% if user.is_authenticated %}
+                    <a class="nav-link active" aria-current="page" href="{% url 'account_logout' %}">خروج</a>
+                {% else %}
+                    <a class="nav-link active" href="{% url 'account_login' %}">ورود</a>
+                    <span> | </span>
+                    <a class="nav-link active" href="{% url 'account_signup' %}">ثبتنام</a>
+                    {#                    <span>|</span>#}
+                    {#                    <a class="nav-link active" href="{% url 'account_signup' %}">ثبتنام جدید</a>#}
+                {% endif %}
                 {#                <a class="nav-link" href="{% url 'logout' %}">خروج</a>#}
             </div>
         </div>
-        <div class="mx-2 text-white">آقا / خانم {{ user.username }}خوش آمدید</div>
+        {% if user.is_authenticated %}
+            <div class="mx-2 text-white">آقا / خانم {{ user.username }}خوش آمدید</div>
+        {% endif %}
     </div>
 </nav>
 
@@ -70,13 +80,10 @@
 {#            </li>#}
 {#            <li class="nav-item">#}
 {#                <a class="nav-link active" href="#"><i class="far fa-chart-bar"></i>خروج</a>#}
-{#
 {#            </li>#}
 {#            #}
-{#
 {#            <li class="nav-item">#}
 {# <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>#}
-{#
 {#            </li>#}
 {#            #}
 {#        </ul>#}

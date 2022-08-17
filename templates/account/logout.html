@@ -1,0 +1,15 @@
+{% extends '_base.html' %}
+
+{% block page_title %}
+    log out
+{% endblock %}
+
+{% block content %}
+    <h1>خروج از حساب کاربری</h1>
+    <h2>آیا مطمئن هستید؟</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="بله">
+{#        <a href="{% url 'patient_list' %}"> خیر </a>#}
+    </form>
+{% endblock %}
