@@ -64,7 +64,10 @@ class DemoInfoUpdateView(generic.UpdateView):
               'p_home_phone', 'p_cell_phone', 'p_fax', 'p_work_phone', 'p_cellular_phone', 'p_health_care_proxy_phone',
               'p_emergency_phone']
     template_name = 'eCRF/patient_update.html'
-    success_url = 'patient_list'
+    context_object_name = 'patient_update'
+
+    def get_success_url(self):
+        return reverse_lazy('patientsListView')
 
 
 class PatientDeleteView(generic.DeleteView):
@@ -74,4 +77,6 @@ class PatientDeleteView(generic.DeleteView):
               'p_home_phone', 'p_cell_phone', 'p_fax', 'p_work_phone', 'p_cellular_phone', 'p_health_care_proxy_phone',
               'p_emergency_phone']
     template_name = 'eCRF/patient_delete.html'
-    success_url = 'patient_list'
+
+    def get_success_url(self):
+        return reverse_lazy('patientsListView')

@@ -3,20 +3,22 @@
 
 
 {% block page_title %}
-Remove Patient History
+    Remove Patient History
 {% endblock %}
 
 {% block content %}
-<h3>آیا از حذف بیمار {{ demoinfo.d_first_name }} {{ demoinfo.d_last_name }} با کد ملی {{ demoinfo.d_national_code }}
-    اطمینان دارید؟</h3>
+    <h3>آیا از حذف بیمار {{ demoinfo.d_first_name }} {{ demoinfo.d_last_name }} با کد ملی {{ demoinfo.d_national_code }}
+        اطمینان دارید؟</h3>
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <!-- Using the formset -->
-    {{ form|crispy }}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- Using the formset -->
+        {{ form|crispy }}
 
-    <input type="submit" value="بله">
+        <input type="submit" class="btn btn-warning" value="بله">
 
-
-</form>
+    </form>
+    <a href="{% url 'patientsListView' %}">
+        <input type="button" class="btn btn-primary" value="انصراف">
+    </a>
 {% endblock %}

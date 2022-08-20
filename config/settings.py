@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_countries',
     'allauth',
     'allauth.account',
+    'rosetta',
 
     # local apps
     'accounts',
@@ -137,12 +138,18 @@ EMAIL_BACKEND = 'django.core.mail.backend.console.EmailBackend'
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa-ir'
 
+LANGUAGES=(
+    ('en', 'English'),
+    ('fa', 'Persian'),
+)
 TIME_ZONE = 'UTC'
+# TIME_ZONE = 'asia/Tehran'
 
 USE_I18N = True
-
+USE_I10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
@@ -158,7 +165,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # accounts Config
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
-SIGNUP_REDIRECT_URL = 'home'
 # AUTH_USER_MODEL = 'accounts/CustomUser'
 
 # all auth settings

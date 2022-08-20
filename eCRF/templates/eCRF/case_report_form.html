@@ -1,77 +1,76 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
+
+
 {% block page_title %}
     case report form
 {% endblock %}
 
 {% block content %}
-
     <p>فرم گزارش مورد</p>
-    <h3> ثبت اطلاعات بیمار {{ patient_hist.d_first_name }} {{ patient_hist.d_last_name }} با کد
-        ملی {{ patient_hist.d_first_name }}
-    </h3>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {#        {{ form|crispy }}#}
-
-
-        <table class="table table-striped">#}
-            <thead>
-            <tr>
-                <th scope="col">سابقه بیماری زمینه ای:</th>
-                <th scope="col">سابقه ابتلا به کرونا با تست مثبت دارد؟</th>
-                <th scope="col">سابقه حساسیت به واکسن دارد؟</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <div class="input-group mb-3">
-                        <select class="form-select" id="chronic_disease" name="chronic_disease">
-                            {% for db_vlu, human_val in model_chronic_disease_choices %}
-                                <option value="{{ db_vlu }}">{{ human_val }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-check">
-                        {% for db_vlu, human_val in model_allergy_choices %}
-                            <input class="form-check-input" type="radio" name="PCR_test_resul" id="id_PCR_test_resul"
-                                   value="{{ db_vlu }}">
-                            <label class="form-check-label" for="id_PCR_test_resul">
-                                {{ human_val }}
-                            </label>
-                        {% endfor %}
-                    </div>
-                </td>
-                <td>
-
-                    <div class="form-check">
-                        {% for db_vlu, human_val in model_allergy_choices %}
-                            <input class="form-check-input" type="radio" name="allergy" id="id_allergy"
-                                   value="{{ db_vlu }}">
-                            <label class="form-check-label" for="id_allergy">
-                                {{ human_val }}
-                            </label>
-                        {% endfor %}
-                    </div>
-
-
-                    {#                    <div>#}
-                    {#                        <div id="div_id_allergy" class="control-group">#}
-                    {#                            <div class="controls">#}
-                    {#                                <label for="id_allergy" class="checkbox ">#}
-                    {#                                    <input type="checkbox" name="allergy" class="checkboxinput" id="id_allergy">#}
-                    {#                                    بله#}
-                    {#                                </label>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <input type="submit" value="ذخیره">
+        {{ form|crispy }}
+        <input type="submit" class="btn btn-success" value="ذخیره">
     </form>
+
+    {#        <table class="table table-striped">#}
+    {#            <thead>#}
+    {#            <tr>#}
+    {#                <th scope="col">سابقه بیماری زمینه ای:</th>#}
+    {#                <th scope="col">سابقه ابتلا به کرونا با تست مثبت دارد؟</th>#}
+    {#                <th scope="col">سابقه حساسیت به واکسن دارد؟</th>#}
+    {#            </tr>#}
+    {#            </thead>#}
+    {#            <tbody>#}
+    {#            <tr>#}
+    {#                <td>#}
+    {#                    <div class="input-group mb-3">#}
+    {#                        <select class="form-select" id="chronic_disease" name="chronic_disease">#}
+    {#                            {% for db_vlu, human_val in model_chronic_disease_choices %}#}
+    {#                                <option value="{{ db_vlu }}">{{ human_val }}</option>#}
+    {#                            {% endfor %}#}
+    {#                        </select>#}
+    {#                    </div>#}
+    {#                </td>#}
+    {#                <td>#}
+    {#                    <div class="form-check">#}
+    {#                        {% for db_vlu, human_val in model_allergy_choices %}#}
+    {#                            <input class="form-check-input" type="radio" name="PCR_test_resul" id="id_PCR_test_resul"#}
+    {#                                   value="{{ db_vlu }}">#}
+    {#                            <label class="form-check-label" for="id_PCR_test_resul">#}
+    {#                                {{ human_val }}#}
+    {#                            </label>#}
+    {#                        {% endfor %}#}
+    {#                    </div>#}
+    {#                </td>#}
+    {#                <td>#}
+    {##}
+    {#                    <div class="form-check">#}
+    {#                        {% for db_vlu, human_val in model_allergy_choices %}#}
+    {#                            <input class="form-check-input" type="radio" name="allergy" id="id_allergy"#}
+    {#                                   value="{{ db_vlu }}">#}
+    {#                            <label class="form-check-label" for="id_allergy">#}
+    {#                                {{ human_val }}#}
+    {#                            </label>#}
+    {#                        {% endfor %}#}
+    {#                    </div>#}
+    {##}
+    {##}
+    {#                    <div>#}
+    {#                        <div id="div_id_allergy" class="control-group">#}
+    {#                            <div class="controls">#}
+    {#                                <label for="id_allergy" class="checkbox ">#}
+    {#                                    <input type="checkbox" name="allergy" class="checkboxinput" id="id_allergy">#}
+    {#                                    بله#}
+    {#                                </label>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </td>#}
+    {#            </tr>#}
+    {#            </tbody>#}
+    {#        </table>#}
+
+
 {% endblock %}

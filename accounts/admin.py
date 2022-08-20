@@ -1,3 +1,10 @@
-from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
-# Register your models here.
+from .forms import CustomUserCreationForm
+from .models import AbstractUser
+
+
+class CustomUserAdmin(UserAdmin):
+    model = AbstractUser
+    add_form = CustomUserCreationForm
+    list_display = ('username', 'password1', 'password2')

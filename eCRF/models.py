@@ -5,6 +5,7 @@ from django_countries.fields import CountryField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
+from django.utils.timezone import now
 
 
 class DemoInfo(models.Model):
@@ -37,27 +38,27 @@ class DemoInfo(models.Model):
         ('6', 'بازنشسته'),
         ('7', 'آزاد'),
     ]
-    d_national_code = models.CharField(max_length=10, primary_key=True)
-    d_first_name = models.CharField(max_length=25)
-    d_last_name = models.CharField(max_length=25)
-    d_birthday = models.DateField()
-    d_gender = models.CharField(max_length=8, choices=GENDER)
-    d_educate_rate = models.CharField(max_length=10, choices=EDUCATE_RATE)
-    d_economic_situation = models.CharField(max_length=10, choices=ECONOMIC_SITUATION)
-    d_status_job = models.CharField(max_length=20, choices=STATUS_JOB)
-    a_country = CountryField()
-    a_province = models.CharField(max_length=15)
-    a_town = models.CharField(max_length=15)
-    a_village = models.CharField(max_length=15)
-    a_post_code = models.CharField(max_length=10)
-    p_home_phone = models.CharField(max_length=11)
-    p_cell_phone = models.CharField(max_length=11)
-    p_fax = models.CharField(max_length=11)
-    p_work_phone = models.CharField(max_length=11)
-    p_cellular_phone = models.CharField(max_length=11)
-    p_health_care_proxy_phone = models.CharField(max_length=11)
-    p_emergency_phone = models.CharField(max_length=11)
-    datetime_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    d_national_code = models.CharField(max_length=10, primary_key=True, verbose_name='کدملی')
+    d_first_name = models.CharField(max_length=25, verbose_name='نام')
+    d_last_name = models.CharField(max_length=25, verbose_name='نام خانوادگی')
+    d_birthday = models.DateField(verbose_name='تاریخ تولد')
+    d_gender = models.CharField(max_length=8, choices=GENDER, verbose_name='جنسیت')
+    d_educate_rate = models.CharField(max_length=10, choices=EDUCATE_RATE, verbose_name='وضعیت آموزشی')
+    d_economic_situation = models.CharField(max_length=10, choices=ECONOMIC_SITUATION, verbose_name='وضعیت اقتصادی')
+    d_status_job = models.CharField(max_length=20, choices=STATUS_JOB, verbose_name='وضعیت شغلی')
+    a_country = CountryField(verbose_name='کشور')
+    a_province = models.CharField(max_length=15, verbose_name='استان')
+    a_town = models.CharField(max_length=15, verbose_name='شهرستان')
+    a_village = models.CharField(max_length=15, verbose_name='روستا')
+    a_post_code = models.CharField(max_length=10, blank=True, verbose_name='کد پستی')
+    p_home_phone = models.CharField(max_length=11, verbose_name='شماره منزل')
+    p_cell_phone = models.CharField(max_length=11, verbose_name='تلفن همراه')
+    p_fax = models.CharField(max_length=11, blank=True, verbose_name='شماره فکس')
+    p_work_phone = models.CharField(max_length=11, blank=True, verbose_name='تلفن محل کار')
+    p_cellular_phone = models.CharField(max_length=11, verbose_name='تلفن حامی بیمار')
+    p_health_care_proxy_phone = models.CharField(max_length=11, blank=True, verbose_name='تلفن پروکسی')
+    p_emergency_phone = models.CharField(max_length=11, verbose_name='تلفن تماس اضطراری')
+    datetime_created = models.DateTimeField(auto_now_add=True, null=True, blank=True, verbose_name='تاریخ ثبتنام')
     datetime_modified = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
@@ -134,11 +135,11 @@ class PatientHistory(models.Model):
         ('No', 'خیر'),
     ]
     national_code = models.ForeignKey(DemoInfo, on_delete=models.CASCADE, related_name='ecrf')
-    chronic_disease = models.CharField(max_length=20, choices=STATUS_CHRONIC)
-    PCR_test_resul = models.CharField(max_length=20, choices=STATUS_PCR, default=False)
-    allergy = models.CharField(max_length=20, choices=STATUS_ALLERGY, default=False)
-    # datetime_modified = models.DateTimeField(auto_now=True, default=datetime.timezone)
-    # datetime_created = models.DateTimeField(auto_now_add=True, default=datetime.timezone)
+    chronic_disease = models.CharField(max_length=20, choices=STATUS_CHRONIC, verbose_name='سابقه بیماری مزمن')
+    PCR_test_resul = models.CharField(max_length=20, choices=STATUS_PCR, default=False, verbose_name='سابقه تست مثبت')
+    allergy = models.CharField(max_length=20, choices=STATUS_ALLERGY, default=False, verbose_name='سابقه حساسیت')
+    datetime_modified = models.DateTimeField(auto_now=True)
+    datetime_created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ثبتنام')
 
     def __str__(self):
         return str(self.national_code)

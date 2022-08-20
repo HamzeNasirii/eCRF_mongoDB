@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+    Log out
+{% endblock %}
+
+{% block content %}
+    <h1>خروج از حساب کاربری</h1>
+    <h2>آیا مطمئن هستید؟</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="بله">
+{#        <a href="{% url 'patient_list' %}"> خیر </a>#}
+    </form>
+{#    <form action="" method="post">#}
+    {#        {% csrf_token %}#}
+    {#        {{ form|crispy }}#}
+    {#        <input type="submit" value="Log out">#}
+    {#    </form>#}
+{% endblock %}
