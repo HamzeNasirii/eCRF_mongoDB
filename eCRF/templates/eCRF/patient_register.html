@@ -6,7 +6,7 @@
     ثبتنام بیمار جدید
 {% endblock %}
 
-{% block content %}
+{% block content %}<div class="container">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="myDiv">
@@ -14,6 +14,7 @@
             {{ form|crispy }}
 
         </div>
+
         <p></p>
         <p><span>
        <input type="submit" class="btn btn-success" value="ذخیره">
@@ -23,7 +24,7 @@
             </a>
         </span> </p>
 
-    </form>
+    </form></div>
 
     {#    <form method="POST" enctype="multipart/form-data">#}
     {#        {% csrf_token %}#}
