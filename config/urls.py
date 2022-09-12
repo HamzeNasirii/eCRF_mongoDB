@@ -25,4 +25,6 @@ urlpatterns = [
     path('eCRF/', include('eCRF.urls')),
 
     path('rosetta/', include('rosetta.urls')),
+    path('', include('charts.urls')),
+
 ]

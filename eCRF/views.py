@@ -2,13 +2,23 @@ from django.shortcuts import render
 from django.views import generic
 from django.urls import reverse_lazy
 from .models import DemoInfo, PatientHistory
+from .forms import NewCaseReportForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # from .forms import MyModelForm
+def ecrf_create_view(request):
+    if request.method == 'POST':
+        pass
+    else:
+        form = NewCaseReportForm()
 
-class PtntHistCreateView(generic.CreateView):
+    return render(request, 'eCRF/test.html', context={'form': form})
+
+
+class PtntHistCreateView(LoginRequiredMixin, generic.CreateView):
     model = PatientHistory
-    fields = ['chronic_disease', 'PCR_test_resul', 'allergy']
+    fields = ['national_code', 'chronic_disease', 'PCR_test_resul', 'allergy']
     template_name = 'eCRF/case_report_form.html'
     context_object_name = 'patient_hist'
 
@@ -24,7 +34,7 @@ class PtntHistCreateView(generic.CreateView):
         return context
 
 
-class DemoInfoCreateView(generic.CreateView):
+class DemoInfoCreateView(LoginRequiredMixin, generic.CreateView):
     model = DemoInfo
     fields = ['d_first_name', 'd_last_name', 'd_national_code', 'd_gender', 'd_birthday', 'd_educate_rate',
               'd_economic_situation', 'd_status_job', 'a_country', 'a_province', 'a_town', 'a_village', 'a_post_code',
@@ -45,19 +55,25 @@ class DemoInfoCreateView(generic.CreateView):
         return context
 
 
-class DemoInfoListView(generic.ListView):
+class DemoInfoListView(LoginRequiredMixin, generic.ListView):
     model = DemoInfo
     template_name = 'eCRF/patients_list.html'
     context_object_name = 'patient_list'
 
 
-class PatientDetailView(generic.DetailView):  # باید تبدیل شود به create تا ثبت فرم گزارش مورد انجام شود
+class PatientDetailView(LoginRequiredMixin, generic.DetailView):  # باید تبدیل شود به create تا ثبت فرم گزارش مورد انجام شود
     model = DemoInfo
     template_name = 'eCRF/patent_detail_view.html'
     context_object_name = 'patient_detail'
 
 
-class DemoInfoUpdateView(generic.UpdateView):
+class CaseReportDtlView(LoginRequiredMixin,generic.DetailView):
+    model = PatientHistory
+    template_name = 'eCRF/case_report_form_detail.html'
+    context_object_name = 'case_report_detail'
+
+
+class DemoInfoUpdateView(LoginRequiredMixin,generic.UpdateView):
     model = DemoInfo
     fields = ['d_first_name', 'd_last_name', 'd_national_code', 'd_gender', 'd_birthday', 'd_educate_rate',
               'd_economic_situation', 'd_status_job', 'a_province', 'a_town', 'a_village', 'a_post_code',
@@ -70,7 +86,7 @@ class DemoInfoUpdateView(generic.UpdateView):
         return reverse_lazy('patientsListView')
 
 
-class PatientDeleteView(generic.DeleteView):
+class PatientDeleteView(LoginRequiredMixin,generic.DeleteView):
     model = DemoInfo
     fields = ['d_first_name', 'd_last_name', 'd_national_code', 'd_gender', 'd_birthday', 'd_educate_rate',
               'd_economic_situation', 'd_status_job', 'a_province', 'a_town', 'a_village', 'a_post_code',

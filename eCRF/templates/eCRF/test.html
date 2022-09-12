@@ -1,0 +1,17 @@
+{% extends '_base.html' %}
+
+{% block page_title %}
+tesssst
+{% endblock %}
+
+{% block content %}
+<div class="col-9">
+<div class="card shadow my-3 p-5">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary">sub</button>
+    </form>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends '_base.html' %}
+
+{% block page_title %}
+case report form detail
+{% endblock %}
+
+{% block content %}
+ <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">بیماری مزمن</th>
+            <th scope="col">آیا بیمار سابقه تست مثبت PCR دارد؟ </th>
+            <th scope="col">آیا بیمار سابقه آلرژی دارد؟ </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ case_report_detail.chronic_disease }}</td>
+            <td>{{ case_report_detail.PCR_test_resul }}</td>
+            <td>{{ case_report_detail.allergy }}</td>
+
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

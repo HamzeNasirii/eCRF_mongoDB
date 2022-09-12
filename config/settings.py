@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'eCRF',
     'patients',
     'pages',
+    'testapp',
+    'charts',
 ]
 
 SITE_ID = 1

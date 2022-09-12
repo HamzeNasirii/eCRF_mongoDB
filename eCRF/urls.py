@@ -6,7 +6,9 @@ from .views import (
     DemoInfoUpdateView,
     PatientDeleteView,
     PtntHistCreateView,
+    CaseReportDtlView,
 )
+
 urlpatterns = [
     path('register/', DemoInfoCreateView.as_view(), name='register'),
     path('ptntList/', DemoInfoListView.as_view(), name='patientsListView'),
@@ -14,4 +16,5 @@ urlpatterns = [
     path('<int:pk>/ptnDemoUpdate/', DemoInfoUpdateView.as_view(), name='patientUpdate'),
     path('<int:pk>/delete/', PatientDeleteView.as_view(), name='patientDelete'),
     path('<int:pk>/casereport/', PtntHistCreateView.as_view(), name='historyCreate'),
+    path('<int:pk>/casereportdetail/', CaseReportDtlView.as_view(), name='casereportdetail'),
 ]
