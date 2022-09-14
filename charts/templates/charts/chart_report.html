@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<body>
+
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+    var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+    var yValues = [2, 5, 1, 24, 15];
+    var barColors = ["red", "green", "blue"];
+
+    new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',  // Bar 1
+            'rgba(54, 162, 235, 0.2)',  // Bar 2
+            'rgba(255, 206, 86, 0.2)',  // Bar 3
+            'rgba(75, 192, 192, 0.2)',  // Bar 4
+            'rgba(153, 102, 255, 0.2)', // Bar 5
+            'rgba(255, 159, 64, 0.2)'   // Bar 6
+        ],
+        borderWidth: 2,
+        borderColor: 'black'
+            legend: {display: false},
+            title: {
+                display: true,
+                text: "World Wine Production 2018"
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
