@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from eCRF.models import *
-import pandas as pd
+
 
 
 def chart(request):

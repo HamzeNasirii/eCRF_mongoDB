@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rosetta',
+    'django-filters',
 
     # local apps
     'accounts',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'pages',
     'testapp',
     'charts',
+
 ]
 
 SITE_ID = 1

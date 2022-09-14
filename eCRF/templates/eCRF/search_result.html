@@ -6,28 +6,6 @@
 {% endblock %}
 
 {% block content %}
-
-    <form method="POST" action="{% url 'filter' %}">
-    {% csrf_token %}
-    {{ filter.form }}
-    <button class="btn btn-lg btn-outline flex mr-auto" type="submit">
-        <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24"
-             stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-        </svg>
-        جستجو
-    </button>
-
-    <br>
-    <br>
-    <br>
-    <br>
-
-
-
-
-
     <h5>لیست بیماران</h5>
     <table class="table table-striped">
         <thead>
@@ -41,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for patient in patient_list %}
+        {% for patient in result %}
             <tr>
                 {#                <th scope="row">{{ username.id }}</th>#}
                 <td>{{ patient.d_first_name }}</td>
