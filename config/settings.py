@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'pages',
     'testapp',
     'charts',
+
 ]
 
 SITE_ID = 1

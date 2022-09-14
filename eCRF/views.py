@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from .models import DemoInfo, PatientHistory
 from .forms import NewCaseReportForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 
 # from .forms import MyModelForm
@@ -61,19 +62,20 @@ class DemoInfoListView(LoginRequiredMixin, generic.ListView):
     context_object_name = 'patient_list'
 
 
-class PatientDetailView(LoginRequiredMixin, generic.DetailView):  # باید تبدیل شود به create تا ثبت فرم گزارش مورد انجام شود
+class PatientDetailView(LoginRequiredMixin,
+                        generic.DetailView):  # باید تبدیل شود به create تا ثبت فرم گزارش مورد انجام شود
     model = DemoInfo
     template_name = 'eCRF/patent_detail_view.html'
     context_object_name = 'patient_detail'
 
 
-class CaseReportDtlView(LoginRequiredMixin,generic.DetailView):
+class CaseReportDtlView(LoginRequiredMixin, generic.DetailView):
     model = PatientHistory
     template_name = 'eCRF/case_report_form_detail.html'
     context_object_name = 'case_report_detail'
 
 
-class DemoInfoUpdateView(LoginRequiredMixin,generic.UpdateView):
+class DemoInfoUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = DemoInfo
     fields = ['d_first_name', 'd_last_name', 'd_national_code', 'd_gender', 'd_birthday', 'd_educate_rate',
               'd_economic_situation', 'd_status_job', 'a_province', 'a_town', 'a_village', 'a_post_code',
@@ -86,7 +88,7 @@ class DemoInfoUpdateView(LoginRequiredMixin,generic.UpdateView):
         return reverse_lazy('patientsListView')
 
 
-class PatientDeleteView(LoginRequiredMixin,generic.DeleteView):
+class PatientDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = DemoInfo
     fields = ['d_first_name', 'd_last_name', 'd_national_code', 'd_gender', 'd_birthday', 'd_educate_rate',
               'd_economic_situation', 'd_status_job', 'a_province', 'a_town', 'a_village', 'a_post_code',
@@ -96,3 +98,13 @@ class PatientDeleteView(LoginRequiredMixin,generic.DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('patientsListView')
+
+
+def search(request):
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        result = DemoInfo.objects.filter(Q(d_last_name__contains=searched) | Q(d_first_name__contains=searched) | Q(
+            d_national_code__contains=searched))
+        return render(request, 'eCRF/search_result.html', {'searched': searched, 'result': result})
+    else:
+        return render(request, 'eCRF/search_result.html')
