@@ -1,67 +1,77 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
+{% extends '_base.html' %}
+{% block page_title %}
+    Report
+{% endblock %}
 
-    <title>Document</title>
-</head>
-<body>
-<table border='1'>
-{{ mydict }}
-    <tr>
-        <th>ردیف</th>
-        <th>جنسیت</th>
-        <th>تعداد</th>
-    </tr>
-    {% for x in man_count %}
-        <tr>
-            <td>{{ x.man }}</td>
-{#            <td>{{ x.man_count }}</td>#}
-{#            <td>{{ x.man }}</td>#}
-        </tr>
-    {% endfor %}
-</table>
-<canvas id="myChart" width="100" height="20vh"></canvas>
-<script>
-    var df ={{ df|safe }};
-    var df1 ={{ df|safe }};
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: df1,
-            datasets: [{
-                label: 'گزارش به تفکیک جنسیت',
-                data: df,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
-</body>
-</html>
+{% block content %}
+    <div class="container">
+            {# gender report tbl#}
+            <table class="table table-bordered" style="width:30%" >
+                <tr style="height:50px">
+                    <th class="small" style="width:5%">ردیف</th>
+                    <th class="small" style="width:20%">جنسیت</th>
+                    <th class="small" style="width:10%">تعداد</th>
+                </tr>
+                <h5 class="small" align="right">تعداد افراد به تفکیک جنس</h5>
+                {% for item in gender_items %}
+                    <tr style="height:30px">
+                        <td class="small">{{ item.row }}</td>
+                        <td class="small">{{ item.gender }}</td>
+                        <td class="small">{{ item.count }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {# educate report tbl#}
+        <table class="table table-bordered" style="width:30%">
+            <tr style="height:50px">
+                <th class="small" style="width:5%">ردیف</th>
+                <th class="small" style="width:20%">میزان تحصیلات</th>
+                <th class="small" style="width:10%">تعداد</th>
+            </tr>
+            <h5 class="small" align="right">تعداد افراد به تفکیک تحصیلات</h5>
+            {% for item in educate_items %}
+                <tr style="height:30px">
+                    <td class="small">{{ item.row }}</td>
+                    <td class="small">{{ item.educate }}</td>
+                    <td class="small">{{ item.count }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {# economic report tbl#}
+        <table class="table table-bordered" style="width:30%">
+            <tr style="height:50px">
+                <th class="small" style="width:5%">ردیف</th>
+                <th class="small" style="width:20%">وضعیت اقتصادی</th>
+                <th class="small" style="width:10%">تعداد</th>
+            </tr>
+            <h5 class="small" align="right">تعداد افراد به تفکیک وضعیت اقتصادی</h5>
+            {% for item in economic_items %}
+                <tr style="height:30px">
+                    <td>{{ item.row }}</td>
+                    <td>{{ item.economic }}</td>
+                    <td>{{ item.count }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {# status job report tbl#}
+        <table class="table table-bordered" style="width:30%">
+            <tr style="height:50px">
+                <th class="small" style="width:5%">ردیف</th>
+                <th class="small" style="width:20%">شغل</th>
+                <th class="small" style="width:10%">تعداد</th>
+            </tr>
+            <h5 class="small" align="right">تعداد افراد به تفکیک شغل</h5>
+            {% for item in status_job_items %}
+                <tr style="height:30px">
+                    <td>{{ item.row }}</td>
+                    <td>{{ item.status_job }}</td>
+                    <td>{{ item.count }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+
+

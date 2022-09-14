@@ -1,7 +1,9 @@
 from django.urls import path
-from . import views
-
+from .views import \
+    gender_report_table, \
+    gender_report_chart
 
 urlpatterns = [
-    path('report/', views.chart, name='chart_view_page'),
+    path('chart/', gender_report_chart, name='gender_chart_report'),
+    path('report/', gender_report_table, name='gender_report_tbl'),
 ]

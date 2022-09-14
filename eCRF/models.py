@@ -67,6 +67,38 @@ class DemoInfo(models.Model):
     def get_absolute_url(self):
         return reverse('patientDetail', args=[self.pk])
 
+    @classmethod
+    def get_gender_count_info(cls):
+        values = []
+        for index, (db_val, human_readable) in enumerate(cls.GENDER):
+            values.append(
+                {'row': index + 1, 'gender': human_readable, 'count': cls.objects.filter(d_gender=db_val).count()})
+        return values
+
+    @classmethod
+    def get_educate_count_info(cls):
+        values = []
+        for index, (db_val, human_readable) in enumerate(cls.EDUCATE_RATE):
+            values.append({'row': index + 1, 'educate': human_readable,
+                           'count': cls.objects.filter(d_educate_rate=db_val).count()})
+        return values
+
+    @classmethod
+    def get_economic_count_info(cls):
+        values = []
+        for index, (db_val, human_readable) in enumerate(cls.ECONOMIC_SITUATION):
+            values.append({'row': index + 1, 'economic': human_readable,
+                           'count': cls.objects.filter(d_economic_situation=db_val).count()})
+        return values
+
+    @classmethod
+    def get_job_status_count_info(cls):
+        values = []
+        for index, (db_val, human_readable) in enumerate(cls.STATUS_JOB):
+            values.append({'row': index + 1, 'status_job': human_readable,
+                           'count': cls.objects.filter(d_status_job=db_val).count()})
+        return values
+
 
 # def get_absolute_url(self):
 #     return reverse('patientDelete', args=[self.pk])

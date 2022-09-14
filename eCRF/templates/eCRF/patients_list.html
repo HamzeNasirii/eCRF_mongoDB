@@ -7,28 +7,16 @@
 
 {% block content %}
 
-    <form method="POST" action="{% url 'filter' %}">
-    {% csrf_token %}
-    {{ filter.form }}
-    <button class="btn btn-lg btn-outline flex mr-auto" type="submit">
-        <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24"
-             stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-        </svg>
-        جستجو
-    </button>
-
-    <br>
-    <br>
-    <br>
-    <br>
 
 
 
 
 
-    <h5>لیست بیماران</h5>
+
+    <div class="container">
+
+
+    <h5 align="right">لیست بیماران</h5>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -37,7 +25,7 @@
             <th scope="col">نام خانوادگی</th>
             <th scope="col">کدملی</th>
             <th scope="col">جنسیت</th>
-            <th scope="col">نمایش اطلاعات</th>
+            <th scope="col">اقدامات</th>
         </tr>
         </thead>
         <tbody>
@@ -49,14 +37,19 @@
                 <td>{{ patient.d_national_code }}</td>
                 <td>{{ patient.d_gender }}</td>
                 <td>
-                    <!--                        {# <a href="{% url 'patient_detail' patient.id %}">#}-->
                     <a href="{{ patient.get_absolute_url }}casereport/">
                         <button type="button" class="btn btn-primary">ثبت گزارش</button>
                     </a>
-                    <a href="{{ patient.get_absolute_url }}casereportdetail/">
+
+
+
+
+                    <a href="{{ patient.get_absolute_url }}casereportdetailview/">
                         <button type="button" class="btn btn-primary">نمایش گزارش</button>
                     </a>
-                    {#                    </a>#}
+
+
+
                     <a href="{{ patient.get_absolute_url }}">
                         <button type="button" class="btn btn-primary">جزئیات</button>
                     </a>
@@ -70,9 +63,8 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+    </table></div>
 
 {% endblock %}
-<!--    <input type="submit" value="ذخیره">-->
 
 
