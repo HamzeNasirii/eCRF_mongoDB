@@ -8,6 +8,7 @@ from .views import (
     PtntHistCreateView,
     CaseReportDtlView,
     search,
+    filter,
 )
 
 urlpatterns = [
@@ -19,4 +20,5 @@ urlpatterns = [
     path('<int:pk>/casereport/', PtntHistCreateView.as_view(), name='historyCreate'),
     path('<int:pk>/casereportdetail/', CaseReportDtlView.as_view(), name='casereportdetail'),
     path('search/', search, name='search'),
+    path('filter/', filter, name='filter'),
 ]

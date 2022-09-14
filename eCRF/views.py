@@ -5,7 +5,7 @@ from .models import DemoInfo, PatientHistory
 from .forms import NewCaseReportForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-
+from .filters import PersonFilter
 
 # from .forms import MyModelForm
 def ecrf_create_view(request):
@@ -108,3 +108,9 @@ def search(request):
         return render(request, 'eCRF/search_result.html', {'searched': searched, 'result': result})
     else:
         return render(request, 'eCRF/search_result.html')
+
+
+def filter(request):
+    person_list = DemoInfo.objects.all()
+    person_filter = PersonFilter(request.POST, queryset=person_list)
+    return render(request, 'eCRF/filter_result.html', {'filter': person_filter})
