@@ -6,64 +6,61 @@
 {% endblock %}
 
 {% block content %}
-
-
-
-
-
-
-
-    <div class="container">
-
-
-    <h5 align="right">لیست بیماران</h5>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            {#            <th scope="row">ردیف</th>#}
-            <th scope="col">نام</th>
-            <th scope="col">نام خانوادگی</th>
-            <th scope="col">کدملی</th>
-            <th scope="col">جنسیت</th>
-            <th scope="col">اقدامات</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for patient in patient_list %}
-            <tr>
-                {#                <th scope="row">{{ username.id }}</th>#}
-                <td>{{ patient.d_first_name }}</td>
-                <td>{{ patient.d_last_name }}</td>
-                <td>{{ patient.d_national_code }}</td>
-                <td>{{ patient.d_gender }}</td>
-                <td>
-                    <a href="{{ patient.get_absolute_url }}casereport/">
-                        <button type="button" class="btn btn-primary">ثبت گزارش</button>
-                    </a>
-
-
-
-
-                    <a href="{{ patient.get_absolute_url }}casereportdetailview/">
-                        <button type="button" class="btn btn-primary">نمایش گزارش</button>
-                    </a>
-
-
-
-                    <a href="{{ patient.get_absolute_url }}">
-                        <button type="button" class="btn btn-primary">جزئیات</button>
-                    </a>
-                    <a href="{{ patient.get_absolute_url }}ptnDemoUpdate/">
-                        <button type="button" class="btn btn-warning">ویرایش</button>
-                    </a>
-                    <a href="{{ patient.get_absolute_url }}delete/">
-                        <button type="button" class="btn btn-danger">حذف</button>
-                    </a>
-                </td>
+    <div class="container" align="right">
+        <br>
+        <form action="{% url 'search' %}" method="POST" class="search-form">
+            {% csrf_token %}
+            <input type="text" class="se-form search-input" name="searched">
+            <input type="submit" class="se-form search-submit" value="جستجو" >
+        </form>
+        <br>
+        <h5 align="right">لیست بیماران</h5>
+        <table class="table table-striped" >
+            <thead>
+            <tr align="center">
+                {#            <th scope="row">ردیف</th>#}
+                <th scope="col">نام</th>
+                <th scope="col">نام خانوادگی</th>
+                <th scope="col">کدملی</th>
+                <th scope="col">جنسیت</th>
+                <th scope="col">اقدامات</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table></div>
+            </thead>
+            <tbody>
+            {% for patient in patient_list %}
+                <tr align="center">
+                    {#                <th scope="row">{{ username.id }}</th>#}
+                    <td>{{ patient.d_first_name }}</td>
+                    <td>{{ patient.d_last_name }}</td>
+                    <td>{{ patient.d_national_code }}</td>
+                    <td>{{ patient.d_gender }}</td>
+                    <td>
+                        <a href="{{ patient.get_absolute_url }}casereport/">
+                            <button type="button" class="btn btn-primary">ثبت تاریخچه و عوارض واکسن</button>
+                        </a>
+
+
+
+                        <a href="{{ patient.get_absolute_url }}casereportdetailview/">
+                            <button type="button" class="btn btn-primary">نمایش گزارش</button>
+                        </a>
+
+
+                        <a href="{{ patient.get_absolute_url }}">
+                            <button type="button" class="btn btn-primary">جزئیات</button>
+                        </a>
+                        <a href="{{ patient.get_absolute_url }}ptnDemoUpdate/">
+                            <button type="button" class="btn btn-warning">ویرایش</button>
+                        </a>
+                        <a href="{{ patient.get_absolute_url }}delete/">
+                            <button type="button" class="btn btn-danger">حذف</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 {% endblock %}
 

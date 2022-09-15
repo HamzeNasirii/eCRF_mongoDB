@@ -53,11 +53,7 @@
                 {% endif %}
                 {#                <a class="nav-link" href="{% url 'logout' %}">خروج</a>#}
             </div>
-            <form action="{% url 'search' %}" method="POST" class="search-form">
-                {% csrf_token %}
-                <input type="text" class="se-form search-input" name="searched">
-                <input type="submit" class="se-form search-submit" value="search">
-            </form>
+
         </div>
         {% if user.is_authenticated %}
             <div class="mx-2 text-white"> {{ user.first_name }} {{ user.last_name }} خوش آمدید</div>
