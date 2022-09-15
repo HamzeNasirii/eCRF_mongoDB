@@ -48,9 +48,9 @@
             <h5 class="small" align="right">تعداد افراد به تفکیک وضعیت اقتصادی</h5>
             {% for item in economic_items %}
                 <tr style="height:30px">
-                    <td>{{ item.row }}</td>
-                    <td>{{ item.economic }}</td>
-                    <td>{{ item.count }}</td>
+                    <td class="small">{{ item.row }}</td>
+                    <td class="small">{{ item.economic }}</td>
+                    <td class="small">{{ item.count }}</td>
                 </tr>
             {% endfor %}
         </table>
@@ -65,9 +65,9 @@
             <h5 class="small" align="right">تعداد افراد به تفکیک شغل</h5>
             {% for item in status_job_items %}
                 <tr style="height:30px">
-                    <td>{{ item.row }}</td>
-                    <td>{{ item.status_job }}</td>
-                    <td>{{ item.count }}</td>
+                    <td class="small">{{ item.row }}</td>
+                    <td class="small">{{ item.status_job }}</td>
+                    <td class="small">{{ item.count }}</td>
                 </tr>
             {% endfor %}
         </table>
