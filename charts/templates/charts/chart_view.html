@@ -1,34 +1,43 @@
 {% extends '_base.html' %}
+
 {% block page_title %}
     Report
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-            {# gender report tbl#}
-            <table class="table table-bordered" style="width:30%" >
-                <tr style="height:50px">
-                    <th class="small" style="width:5%">ردیف</th>
-                    <th class="small" style="width:20%">جنسیت</th>
-                    <th class="small" style="width:10%">تعداد</th>
+    {% if user.is_authenticated %}
+        <div class="container">
+        {# gender report tbl#}
+        <table class="table table-striped" style="width:30%">
+            <tr style="height:50px">
+                <th class="small" style="width:5%">ردیف</th>
+                <th class="small" style="width:20%">جنسیت</th>
+                <th class="small" style="width:10%">تعداد</th>
+            </tr>
+            <p class="small" align="right"><strong>
+                تعداد افراد به تفکیک جنس
+            </strong>
+            </p>
+            {% for item in gender_items %}
+                <tr style="height:30px">
+                    <td class="small">{{ item.row }}</td>
+                    <td class="small">{{ item.gender }}</td>
+                    <td class="small">{{ item.count }}</td>
                 </tr>
-                <h5 class="small" align="right">تعداد افراد به تفکیک جنس</h5>
-                {% for item in gender_items %}
-                    <tr style="height:30px">
-                        <td class="small">{{ item.row }}</td>
-                        <td class="small">{{ item.gender }}</td>
-                        <td class="small">{{ item.count }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
+            {% endfor %}
+        </table>
         {# educate report tbl#}
-        <table class="table table-bordered" style="width:30%">
+        <table class="table table-striped" style="width:30%">
             <tr style="height:50px">
                 <th class="small" style="width:5%">ردیف</th>
                 <th class="small" style="width:20%">میزان تحصیلات</th>
                 <th class="small" style="width:10%">تعداد</th>
             </tr>
-            <h5 class="small" align="right">تعداد افراد به تفکیک تحصیلات</h5>
+            <p class="small" align="right">
+                <strong>
+                    تعداد افراد به تفکیک تحصیلات
+                </strong>
+            </p>
             {% for item in educate_items %}
                 <tr style="height:30px">
                     <td class="small">{{ item.row }}</td>
@@ -39,13 +48,17 @@
         </table>
 
         {# economic report tbl#}
-        <table class="table table-bordered" style="width:30%">
+        <table class="table table-striped" style="width:30%">
             <tr style="height:50px">
                 <th class="small" style="width:5%">ردیف</th>
                 <th class="small" style="width:20%">وضعیت اقتصادی</th>
                 <th class="small" style="width:10%">تعداد</th>
             </tr>
-            <h5 class="small" align="right">تعداد افراد به تفکیک وضعیت اقتصادی</h5>
+            <p class="small" align="right">
+                <strong>
+                    تعداد افراد به تفکیک وضعیت اقتصادی
+                </strong>
+            </p>
             {% for item in economic_items %}
                 <tr style="height:30px">
                     <td class="small">{{ item.row }}</td>
@@ -56,13 +69,17 @@
         </table>
 
         {# status job report tbl#}
-        <table class="table table-bordered" style="width:30%">
+        <table class="table table-striped" style="width:30%">
             <tr style="height:50px">
                 <th class="small" style="width:5%">ردیف</th>
                 <th class="small" style="width:20%">شغل</th>
                 <th class="small" style="width:10%">تعداد</th>
             </tr>
-            <h5 class="small" align="right">تعداد افراد به تفکیک شغل</h5>
+            <p class="small" align="right">
+                <strong>
+                    تعداد افراد به تفکیک شغل
+                </strong>
+            </p>
             {% for item in status_job_items %}
                 <tr style="height:30px">
                     <td class="small">{{ item.row }}</td>
@@ -71,7 +88,17 @@
                 </tr>
             {% endfor %}
         </table>
-    </div>
+
+    {% else %}
+        <div class="container" align="right">
+            <br>
+            <p align="right">لطفا ابتدا با نام کاربری خود وارد شوید.</p></div>
+        {#        <form method="post">#}
+        {#            {% csrf_token %}#}
+        {#            {{ MyCustomLoginForm|crispy }}#}
+        {#            <button type="submit">Log In</button>#}
+        {#        </form>#}
+        {##}
+    {% endif %}
+</div>
 {% endblock %}
-
-
