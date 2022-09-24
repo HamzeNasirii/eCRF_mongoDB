@@ -14,6 +14,10 @@
 
     <title> {% block page_title %} {% endblock %} </title>
     <style>
+        .chartBox {
+            width: 400px;
+        }
+
         .myDiv {
             border: 2px outset #e76c2b;
             background-color: #6dd0ee;
@@ -42,7 +46,15 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'home' %}">خانه</a>
                 <a class="nav-link active" aria-current="page" href="{% url 'register' %}">ثبتنام بیمار</a>
                 <a class="nav-link active" aria-current="page" href="{% url 'patientsListView' %}">لیست بیماران</a>
-                <a class="nav-link active" aria-current="page" href="{% url 'gender_report_tbl' %}">گزارشات</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        گزارشات
+                    </a>
+                    <div class="dropdown-menu active" aria-current="page">
+                        <a class="dropdown-item" aria-current="page" href="{% url 'gender_report_tbl' %}">جداول</a>
+                        <a class="dropdown-item" aria-current="page" href="{% url 'gender_chart_report' %}">نمودار</a>
+                    </div>
+                </li>
                 {% if user.is_authenticated %}
                     <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">خروج</a>
                 {% else %}
