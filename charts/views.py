@@ -49,16 +49,16 @@ def gender_report_chart(request):
         'exprt_count': int(DemoInfo.objects.filter(d_educate_rate='exprt').count()),
         'Mstrs_count': int(DemoInfo.objects.filter(d_educate_rate='Mstrs').count()),
         'Phd_count': int(DemoInfo.objects.filter(d_educate_rate='Phd').count()),
-        'low_count': int(DemoInfo.objects.filter(d_gender='wom').count()),
-        'norm_count': int(DemoInfo.objects.filter(d_gender='wom').count()),
-        'good_count': int(DemoInfo.objects.filter(d_gender='wom').count()),
-        'best_count': int(DemoInfo.objects.filter(d_gender='wom').count()),
-        '1_count': int(DemoInfo.objects.filter(d_gender='wom').count()),
-        '2_count': int(DemoInfo.objects.filter(d_gender='wom').count()),
-        '3_count': int(DemoInfo.objects.filter(d_gender='wom').count()),
-        '4_count': int(DemoInfo.objects.filter(d_gender='wom').count()),
-        '5_count': int(DemoInfo.objects.filter(d_gender='wom').count()),
-        '6_count': int(DemoInfo.objects.filter(d_gender='wom').count()),
-        '7_count': int(DemoInfo.objects.filter(d_gender='wom').count())
+        'low_count': int(DemoInfo.objects.filter(d_economic_situation='low').count()),
+        'norm_count': int(DemoInfo.objects.filter(d_economic_situation='norm').count()),
+        'good_count': int(DemoInfo.objects.filter(d_economic_situation='good').count()),
+        'best_count': int(DemoInfo.objects.filter(d_economic_situation='best').count()),
+        '1_count': int(DemoInfo.objects.filter(d_status_job='1').count()),
+        '2_count': int(DemoInfo.objects.filter(d_status_job='2').count()),
+        '3_count': int(DemoInfo.objects.filter(d_status_job='3').count()),
+        '4_count': int(DemoInfo.objects.filter(d_status_job='4').count()),
+        '5_count': int(DemoInfo.objects.filter(d_status_job='5').count()),
+        '6_count': int(DemoInfo.objects.filter(d_status_job='6').count()),
+        '7_count': int(DemoInfo.objects.filter(d_status_job='7').count())
     }
     return render(request, 'charts/chart_report.html', context)
