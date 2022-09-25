@@ -1,5 +1,5 @@
 import datetime
-
+from django.utils import timezone
 from django.db import models
 from django_countries.fields import CountryField
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -129,9 +129,9 @@ class DemoInfo(models.Model):
 #     ]
 #     national_code = models.ForeignKey(DemoInfo, on_delete=models.CASCADE, related_name='health', blank=True)
 #     typeVaccine = models.CharField(max_length=10, choices=TYPE_VACCINE_CHOICE)
-#     injectVaccineDate = models.DateField()
+#     injectVaccineDate = models.DateField(default=timezone)
 #     typeSideEffect = models.CharField(max_length=2, choices=SIDE_EFFECT_CHOICES)
-#     sideEffectDate = models.DateField()
+#     sideEffectDate = models.DateField(default=timezone)
 #     vaccineDose = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
 #     age = models.PositiveIntegerField(validators=[MinValueValidator(5), MaxValueValidator(130)])
 #     weight = models.DecimalField(max_length=4, max_digits=4, decimal_places=1, validators=[MinValueValidator(10),
