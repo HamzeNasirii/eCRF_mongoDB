@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from .filters import PersonFilter
 
-# from .forms import MyModelForm
+
 def ecrf_create_view(request):
     if request.method == 'POST':
         pass
@@ -49,6 +49,7 @@ class DemoInfoCreateView(LoginRequiredMixin, generic.CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['demo_info_models'] = DemoInfo.objects.all()
+        # context['national_code'] = DemoInfo.objects.get(pk=DemoInfo.d_national_code)
         context['model_gender_choices'] = DemoInfo.GENDER
         context['model_ecu_choices'] = DemoInfo.EDUCATE_RATE
         context['model_eco_choices'] = DemoInfo.ECONOMIC_SITUATION
@@ -60,6 +61,7 @@ class DemoInfoListView(LoginRequiredMixin, generic.ListView):
     model = DemoInfo
     template_name = 'eCRF/patients_list.html'
     context_object_name = 'patient_list'
+    ordering = ['-datetime_created']
 
 
 class PatientDetailView(LoginRequiredMixin,

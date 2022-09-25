@@ -6,6 +6,18 @@
     ثبتنام بیمار جدید
 {% endblock %}
 
+<<<<<<< HEAD
+{% block content %}
+    <div class="container"><br>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="myDiv">
+                <!-- Using the formset -->
+                {{ form|crispy }}
+            </div>
+            <p></p>
+            <p align="center"><span>
+=======
 {% block content %}<div class="container">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -17,14 +29,23 @@
 
         <p></p>
         <p align="center"><span>
+>>>>>>> 67f3b94727d7ec4f4afe5bca43cb738b2a351a89
        <input type="submit" class="btn btn-success" value="ذخیره">
    </span> |
-        <span>
+                <span>
             <a href="{% url 'patientsListView' %}"> <input type="button" class="btn btn-primary" value="برگشت">
             </a>
-        </span> </p>
+{#                    <span>#}
+{#                        <a href="{{ patient.get_absolute_url }}casereport/">#}
+{#                            <button type="submit" class="btn btn-primary">ثبت تاریخچه و عوارض واکسن</button>#}
+{#                        </a>#}
+{#                    </span>#}
+        </span></p>
 
-    </form></div>
+        </form>
+    </div>
+
+
 
     {#    <form method="POST" enctype="multipart/form-data">#}
     {#        {% csrf_token %}#}
