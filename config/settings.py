@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'pages',
     'testapp',
     'charts',
-    'persian_translate',
+    'persian_translate.apps.PersianTranslateConfig',
 ]
 
 SITE_ID = 1
