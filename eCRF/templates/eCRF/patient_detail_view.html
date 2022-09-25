@@ -1,11 +1,14 @@
 {% extends '_base.html' %}
 {% load i18n %}
+{% load jalali_tags %}
+
 {% block page_title %}
     جزئیات بیمار
 {% endblock %}
 
 {% block content %}
     <div class="container">
+    <div class="review_meta" dir="rtl">
         <h5 align="right">مشخصات بیمار</h5>
         <table class="table table-striped">
             <thead>
@@ -26,7 +29,7 @@
                 <td>{{ patient_detail.d_first_name }}</td>
                 <td>{{ patient_detail.d_last_name }}</td>
                 <td>{{ patient_detail.d_national_code }}</td>
-                <td>{{ patient_detail.d_birthday }}</td>
+                <td>{{ patient_detail.d_birthday|to_jalali:'%y/%m/%d' }}</td>
                 <td>{{ patient_detail.d_gender }}</td>
                 <td>{{ patient_detail.d_educate_rate }}</td>
                 <td>{{ patient_detail.d_economic_situation }}</td>
@@ -108,7 +111,7 @@
                 <td>{{ patient_detail.a_post_code }}</td>
             </tr>
             </tbody>
-        </table>
+        </table></div>
 
         <a href="{% url 'patientsListView' %}" align="right"> <input type="button" class="btn btn-primary"
                                                                      value="{% trans 'back' %}"> </a>

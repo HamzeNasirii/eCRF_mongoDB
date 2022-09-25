@@ -37,11 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third party apps
+    'jalali_date',
     'crispy_forms',
     'django_countries',
     'allauth',
     'allauth.account',
     'rosetta',
+
     # 'django-filters',
 
     # local apps
@@ -51,7 +53,6 @@ INSTALLED_APPS = [
     'pages',
     'testapp',
     'charts',
-
 ]
 
 SITE_ID = 1

@@ -67,7 +67,7 @@ class DemoInfoListView(LoginRequiredMixin, generic.ListView):
 class PatientDetailView(LoginRequiredMixin,
                         generic.DetailView):  # باید تبدیل شود به create تا ثبت فرم گزارش مورد انجام شود
     model = DemoInfo
-    template_name = 'eCRF/patent_detail_view.html'
+    template_name = 'eCRF/patient_detail_view.html'
     context_object_name = 'patient_detail'
 
 
