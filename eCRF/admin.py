@@ -13,4 +13,4 @@ class DemoAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
 class PtntHistoryAdmin(admin.ModelAdmin):
     list_display = ['national_code', 'chronic_disease', 'PCR_test_resul', 'allergy', 'datetime_modified',
                     'datetime_created']
-# Register your models here.
+

@@ -125,8 +125,26 @@ class DemoInfo(models.Model):
 #         ('14', 'Noora - نورا'),
 #     ]
 #     SIDE_EFFECT_CHOICES = [
-#         ('1', 'تب کمتر از 38.5')
+#         ('1', 'تب بیشتر از 38.5'),
+#         ('2', 'بی اشتهایی'),
+#         ('3', 'استفراغ'),
+#         ('4', 'تهوع'),
+#         ('5', 'کهیر'),
+#         ('6', 'سردرد'),
+#         ('7', 'اسهال'),
+#         ('8', 'درد بدن و کوفتگی'),
+#         ('9', 'سرفه'),
+#         ('10', 'تنگی نفس'),
+#         ('11', 'درد مفاصل'),
+#         ('12', 'موضغی عوارض'),
+#         ('13', 'تزریق محل آبسه'),
+#         ('14', 'خس خس سینه'),
+#         ('15', 'تورم مفصل'),
+#         ('16', 'کاهش سطح هوشیاری'),
+#         ('17', 'تشنج'),
+#         ('18', 'سایر'),
 #     ]
+#
 #     national_code = models.ForeignKey(DemoInfo, on_delete=models.CASCADE, related_name='health', blank=True)
 #     typeVaccine = models.CharField(max_length=10, choices=TYPE_VACCINE_CHOICE)
 #     injectVaccineDate = models.DateField(default=timezone)
@@ -146,7 +164,8 @@ class DemoInfo(models.Model):
 #
 #     def __str__(self):
 #         return str(self.national_code)
-
+#
+#
 # def get_absolute_url(self):
 #     return reverse('patient_detail', args=[self.national_code])
 

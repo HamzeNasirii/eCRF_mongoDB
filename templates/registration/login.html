@@ -6,9 +6,10 @@
 {% endblock %}
 
 {% block content %}
-    <form action="" method="post">
+    <div class="container" align="right">
+    <form action="" method="post" >
         {% csrf_token %}
         {{ form|crispy }}
         <input type="submit" value="ورود">
-    </form>
+    </form></div>
 {% endblock %}

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html dir="rtl" lang="fa">
 <head>
@@ -12,8 +13,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+{#    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'>#}
+{#    <link rel="stylesheet" href="{% static 'css/style.css' %}">#}
     <title> {% block page_title %} {% endblock %} </title>
-    <style>
+    <style type="">
         .chartBox {
             width: 400px;
         }
@@ -27,13 +30,13 @@
 </head>
 
 
-<body>
+<body style="background-color:GhostWhite;">
 {#{% if user.is_authenticated %}#}
 {#    <span>خوش آمدید {{ user.username }}</span>#}
 {#{% else %}#}
 {#    <a href="#">Login</a> <span>|</span> <a href="#">Sign up</a>#}
 {#{% endif %}#}
-
+<br>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">فرم گزارش مورد</a>
