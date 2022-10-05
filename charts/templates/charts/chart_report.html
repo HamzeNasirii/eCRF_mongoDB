@@ -6,220 +6,232 @@
 
 {% block content %}
 
-    <div class="chartBox">
-        <canvas id="myChart"></canvas>
-    </div>
-    <div class="chartBox">
-        <canvas id="educate_Chart"></canvas>
-    </div>
-    <div class="chartBox">
-        <canvas id="economic_Chart"></canvas>
-    </div>
-    <div class="chartBox">
-        <canvas id="job_status_Chart"></canvas>
-    </div>
+    {% if user.is_authenticated %}
+        <div class="chartBox">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="chartBox">
+            <canvas id="educate_Chart"></canvas>
+        </div>
+        <div class="chartBox">
+            <canvas id="economic_Chart"></canvas>
+        </div>
+        <div class="chartBox">
+            <canvas id="job_status_Chart"></canvas>
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    {#------------------------------- GENDER CHART -------------------------#}
-    <canvas id="myChart" width="400" height="400"></canvas>
-    <script>
-        // setup
-        const data = {
-            labels: ['مرد', 'زن', 'نامشخص'],
-            datasets: [{
-                label: 'نسبت جمعیت به جنس',
-                data: [{{man_count}}, {{women_count}}, {{ukw_count}}],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }
-            ]
-        }
-
-        // config
-        const config = {
-            type: 'bar',
-            data,
-            options: {
-                scales: {
-                    yAxes: [{
-                        display: true,
-                        ticks: {
-                            beginAtZero: true,
-                            min: 0
-                        }
-                    }]
+        {#------------------------------- GENDER CHART -------------------------#}
+        <canvas id="myChart" width="400" height="400"></canvas>
+        <script>
+            // setup
+            const data = {
+                labels: ['مرد', 'زن', 'نامشخص'],
+                datasets: [{
+                    label: 'نسبت جمعیت به جنس',
+                    data: [{{man_count}}, {{women_count}}, {{ukw_count}}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
                 }
+                ]
             }
-        };
 
-        // render init block
-        const myChart = new Chart(
-            document.getElementById('myChart'),
-            config
-        );
-        // render init block for -------------- EDUCATE CHART ------------
-        // setup
-        const educate_data = {
-            labels: ['بی سواد', 'ابتدایی', 'دیپلم', 'کاردانی', 'کارشناسی', 'کارشناسی ارشد', 'دکتری'],
-            datasets: [{
-                label: 'نسبت جمعیت به تحصیلات',
-                data: [{{illit_count}}, {{elmnt_count}}, {{dplom_count}}, {{tchnc_count}}, {{exprt_count}},
-                    {{Mstrs_count}}, {{Phd_count}}],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(54, 162, 235, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(54, 162, 235, 1)'
-                ],
-                borderWidth: 1
-            }
-            ]
-        }
-        // config LINE
-        const educate_config = {
-            type: 'radar',
-            data: educate_data,
-            options: {
-                scales: {
-                    yAxes: [{
-                        display: true,
-                        ticks: {
-                            beginAtZero: true,
-                            min: 0
-                        }
-                    }]
+            // config
+            const config = {
+                type: 'bar',
+                data,
+                options: {
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                min: 0
+                            }
+                        }]
+                    }
                 }
-            }
-        };
-        // render init block
-        const educate_Chart = new Chart(
-            document.getElementById('educate_Chart'),
-            educate_config
-        )
+            };
 
-        // render init block for -------------- ECONOMIC CHART ------------
-        // setup
-        const economic_data = {
-            labels: ['ضعیف', 'متوسط', 'خوب', 'عالی'],
-            datasets: [{
-                label: 'نسبت جمعیت به درآمد',
-                data: [{{low_count}}, {{norm_count}}, {{good_count}}, {{best_count}}],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)'
-                ],
-                borderWidth: 1
-            }
-            ]
-        }
-        // config LINE
-        const economic_config = {
-            type: 'bar',
-            data: economic_data,
-            options: {
-                scales: {
-                    yAxes: [{
-                        display: true,
-                        ticks: {
-                            beginAtZero: true,
-                            min: 0
-                        }
-                    }]
+            // render init block
+            const myChart = new Chart(
+                document.getElementById('myChart'),
+                config
+            );
+            // render init block for -------------- EDUCATE CHART ------------
+            // setup
+            const educate_data = {
+                labels: ['بی سواد', 'ابتدایی', 'دیپلم', 'کاردانی', 'کارشناسی', 'کارشناسی ارشد', 'دکتری'],
+                datasets: [{
+                    label: 'نسبت جمعیت به تحصیلات',
+                    data: [{{illit_count}}, {{elmnt_count}}, {{dplom_count}}, {{tchnc_count}}, {{exprt_count}},
+                        {{Mstrs_count}}, {{Phd_count}}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
                 }
+                ]
             }
-        };
-        // render init block
-        const economic_Chart = new Chart(
-            document.getElementById('economic_Chart'),
-            economic_config
-        )
-
-        // render init block for -------------- ECONOMIC CHART ------------
-        // setup
-        const job_status_data = {
-            labels: ['موضوعیت ندارد', 'بیکار', 'کشاورز', 'کارگر', 'کارمند', 'بازنشسته', 'آزاد'],
-            datasets: [{
-                label: 'نسبت جمعیت به شغل',
-                data: [{{1_count}}, {{2_count}}, {{3_count}}, {{4_count}}, {{5_count}}, {{6_count}}, {{7_count}}],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(54, 162, 235, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(54, 162, 235, 1)'
-                ],
-                borderWidth: 1
-            }
-            ]
-        }
-        // config LINE
-        const job_status_config = {
-            type: 'bar',
-            data: job_status_data,
-            options: {
-                scales: {
-                    yAxes: [{
-                        display: true,
-                        ticks: {
-                            beginAtZero: true,
-                            min: 0
-                        }
-                    }]
+            // config LINE
+            const educate_config = {
+                type: 'radar',
+                data: educate_data,
+                options: {
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                min: 0
+                            }
+                        }]
+                    }
                 }
+            };
+            // render init block
+            const educate_Chart = new Chart(
+                document.getElementById('educate_Chart'),
+                educate_config
+            )
+
+            // render init block for -------------- ECONOMIC CHART ------------
+            // setup
+            const economic_data = {
+                labels: ['ضعیف', 'متوسط', 'خوب', 'عالی'],
+                datasets: [{
+                    label: 'نسبت جمعیت به درآمد',
+                    data: [{{low_count}}, {{norm_count}}, {{good_count}}, {{best_count}}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }
+                ]
             }
-        };
-        // render init block
-        const job_status_Chart = new Chart(
-            document.getElementById('job_status_Chart'),
-            job_status_config
-        )
+            // config LINE
+            const economic_config = {
+                type: 'bar',
+                data: economic_data,
+                options: {
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                min: 0
+                            }
+                        }]
+                    }
+                }
+            };
+            // render init block
+            const economic_Chart = new Chart(
+                document.getElementById('economic_Chart'),
+                economic_config
+            )
+
+            // render init block for -------------- ECONOMIC CHART ------------
+            // setup
+            const job_status_data = {
+                labels: ['موضوعیت ندارد', 'بیکار', 'کشاورز', 'کارگر', 'کارمند', 'بازنشسته', 'آزاد'],
+                datasets: [{
+                    label: 'نسبت جمعیت به شغل',
+                    data: [{{1_count}}, {{2_count}}, {{3_count}}, {{4_count}}, {{5_count}}, {{6_count}}, {{7_count}}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }
+                ]
+            }
+            // config LINE
+            const job_status_config = {
+                type: 'bar',
+                data: job_status_data,
+                options: {
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                min: 0
+                            }
+                        }]
+                    }
+                }
+            };
+            // render init block
+            const job_status_Chart = new Chart(
+                document.getElementById('job_status_Chart'),
+                job_status_config
+            )
 
 
-    </script>
+        </script>
+    {% else %}
+        <div class="container" align="right">
+            <br>
+            <p align="right">لطفا ابتدا با نام کاربری خود وارد شوید.</p></div>
+        {#        <form method="post">#}
+        {#            {% csrf_token %}#}
+        {#            {{ MyCustomLoginForm|crispy }}#}
+        {#            <button type="submit">Log In</button>#}
+        {#        </form>#}
+        {##}
+    {% endif %}
 {% endblock %}
